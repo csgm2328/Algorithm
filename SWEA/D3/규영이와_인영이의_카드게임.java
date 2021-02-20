@@ -1,3 +1,4 @@
+package D3;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -5,7 +6,7 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 //규영이와 이기는 경우와 지는 경우
-public class Solution {
+public class 규영이와_인영이의_카드게임 {
 	static int[] guyoung = new int[9];
 	static int[] inyoung = new int[9];
 	static int[] save = new int[9];
