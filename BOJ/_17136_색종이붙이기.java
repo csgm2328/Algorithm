@@ -3,8 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 import java.util.StringTokenizer;
-//
-
+//6h + fail
 public class _17136_색종이붙이기 {
 	static int N = 10;
 	static int[][] arr = new int[N][N];
@@ -28,6 +27,7 @@ public class _17136_색종이붙이기 {
 	static void backtracking(int cnt) {
 		
 		//시작점 찾기
+		//포인트 1: break point
 		int startR = -1,startC = -1;
 		out:for(int i =0; i< N; i++) {
 			for(int j =0 ; j< N; j++) {
@@ -45,6 +45,8 @@ public class _17136_색종이붙이기 {
 		}
 			
 		//붙일 색종이의 크기 찾기
+		//여기서도 가로세로 길이를 찾지말고 붙일 수 있는 최대크기에서부터 내려가면서
+		//그 지점에 붙일 수 있는지를 체크한다
 		int max_size = 5;
 		while(max_size > 1) {
 			boolean attachble = true;
@@ -61,7 +63,8 @@ public class _17136_색종이붙이기 {
 		}
 		
 		//재귀 구조
-		for(int size = 1; size<=max_size; size++) { //붙일 수 있는 최대크기보다 작은 것들도 붙여본다
+		for(int size = 1; size<=max_size; size++) { //포인트 2 ! 붙일 수 있는 최대크기보다 작은 것들도 붙여본다
+			//이 과정을 통해 복잡한 생각을 하지 않고 가장 색종이를 조금 쓰는 조합을 찾아 낼 수 있다
 			if(paper[size] == 0)
 				continue;
 			for(int i = startR; i< startR+size; i++) 
