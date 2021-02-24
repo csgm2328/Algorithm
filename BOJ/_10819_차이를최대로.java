@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.*;
 
+// 그리디 방법은 2h
+// 완탐은 10m
 public class _10819_차이를최대로 {
 	static StringBuilder sb = new StringBuilder();
 	static int N;
@@ -23,8 +25,34 @@ public class _10819_차이를최대로 {
 		for (int i = 0; i < N; i++) {
 			arr[i] = Integer.parseInt(st.nextToken());
 		}
-		permutation(0);
-		System.out.print(Max);
+//		permutation(0);
+		
+		// 절대값 안의 차이가 지속적으로 크게 만든다
+		// 정렬 후 중간을 나눠서 반복문
+		// N이 홀수 일때는 중간값이 앞 뒤에서 차이가 큰 것과의 계산결과를 선택한다
+		// 1  4  8
+		// 10 15 20
+		// <------ 이 방향으로 계산할거임 
+		Arrays.sort(arr);
+		int sum = 0;
+		int M = N;
+		if(N %2 == 1) { //N이 홀수 일때는 한번만 쓰인 첫 시작 중간-1과 마지막으로 끝난 중간+1 중에 차이가 큰걸로 고름
+			if(arr[N/2] - arr[N/2-1] > arr[N/2+1] - arr[N/2]) { //
+				sum += arr[N/2] - arr[N/2-1];
+			}
+			else
+				sum += arr[N/2+1] - arr[N/2];
+			M--;
+		}
+		int front = N/2-1; //중간부터
+		int rear = N-1;	//끝부터
+		for(int i = 0; i< M-1; i++) {//N-1번 계산
+			if(i %2 == 0)
+				sum += arr[rear] - arr[front--];
+			else
+				sum += arr[rear--] - arr[front];
+		}
+		System.out.print(sum);
 	}
 
 	// 0 -1 + 1-2 + 2-3
