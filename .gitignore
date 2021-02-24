@@ -17,6 +17,9 @@ local.properties
 .project
 .recommenders
 
+# Main
+Main.java
+
 # External tool builders
 .externalToolBuilders/
 
