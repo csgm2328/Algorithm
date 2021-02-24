@@ -4,14 +4,14 @@ import java.util.*;
 // 그리디 방법은 2h
 // 완탐은 10m
 //main udpate1
-public class Main {
+public class _19949_영재의시험 {
 	static StringBuilder sb = new StringBuilder();
-	static int N, K;
+	static int N;
 //	static int[] dr = { -1, 1, 0, 0 };
 //	static int[] dc = { 0, 0, -1, 1 };
 
 	static int sum;
-	static char[] arr;
+	static int[] arr;
 	static int[] save;
 	static boolean flag = true;
 //	static boolean[] visited;
@@ -19,38 +19,21 @@ public class Main {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		N = Integer.parseInt(st.nextToken());
-		K = Integer.parseInt(st.nextToken());
-
-		arr = new char[N];
-		String s[] = br.readLine().split("");
+		N = 10;
+		arr = new int[N];
+		save = new int[N];
 		for (int i = 0; i < N; i++) {
-			arr[i] = s[i].charAt(0);
+			arr[i] = Integer.parseInt(st.nextToken());
 		}
-		out:for (int i = 0; i < N; i++) {
-			if (arr[i] == 'P') {
-				for (int j = K; j >= 1; j--) {
-					if (0 <= i - j) {
-						if (arr[i - j] == 'H') {
-							arr[i - j] = 'X';
-							sum++;
-							continue out;
-						}
-					}
-				}
-				for (int j = 1; j <= K; j++) {
-					if (i + j < N) {
-						if (arr[i + j] == 'H') {
-							arr[i + j] = 'X';
-							sum++;
-							continue out;
-						}
-					}
-				}
-			}
-		}
-		System.out.print(sum);
 
+		for (int pre = 1; pre <= 5; pre++) {
+			if (arr[0] == pre)
+				permutation(pre, 1, 1, 1);
+			else
+				permutation(pre, 1, 1, 0);
+		}
+//		perm(0);
+		System.out.print(sum);
 	}
 
 	// 중복 순열

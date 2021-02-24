@@ -4,7 +4,7 @@ import java.util.*;
 // 그리디 방법은 2h
 // 완탐은 10m
 //main udpate1
-public class Main {
+public class _19941_햄버거분배 {
 	static StringBuilder sb = new StringBuilder();
 	static int N, K;
 //	static int[] dr = { -1, 1, 0, 0 };
