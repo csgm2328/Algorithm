@@ -3,7 +3,7 @@ import java.util.*;
 
 //연속 오름차순 혹은 내림차순의 최대 길이
 //01:00~
-public class Main {
+public class _2491_수열_연속차순길이 {
 	static StringBuilder sb = new StringBuilder();
 	static int N;
 	static int[] arr;
