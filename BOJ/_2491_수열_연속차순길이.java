@@ -18,9 +18,9 @@ public class _2491_수열_연속차순길이 {
 
 		//오름차순 체크
 		int plus_max = -1, sum = 1;
-		for (int i = 1; i < N; i++) {
+		for (int i = 1; i < N; i++) { //2번째부터 끝까지
 			arr[i] = Integer.parseInt(st.nextToken());
-			if (arr[i - 1] <= arr[i]) {
+			if (arr[i - 1] <= arr[i]) { //앞이랑 오름차순인지 체크
 				sum++;
 			} else { //틀린 경우에만 체크하고 나중에 sum == N일때만 갱신한다면 놓친다
 				if (plus_max < sum)

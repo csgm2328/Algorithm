@@ -1,3 +1,4 @@
+package SW_TEST_Sample;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,7 +11,7 @@ import java.util.StringTokenizer;
 //강의 풀이
 //1. 가장자리  코어 배제
 //2. 시뮬레이션이 아닌 부분집합으로
-public class Solution {
+public class _1767_프로세서_연결하기 {
 	//전역 변수 초기화 체크 필수 제발
 	static int T, N;
 	static int totalcore, line_temp;

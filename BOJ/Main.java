@@ -1,52 +1,76 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Scanner;
+import java.util.StringTokenizer;
 
-//연속 오름차순 혹은 내림차순의 최대 길이
-//01:00~
+//조커
+//가장 긴 수열에 조커들 추가해보고 다시 길이 체크
 public class Main {
-	static StringBuilder sb = new StringBuilder();
-	static int N;
-	static int[] arr;
-
 	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner sc = new Scanner(System.in);
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		int N = Integer.parseInt(br.readLine());
+		int[] arr = new int[N];
+		int joker = 0;
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		N = Integer.parseInt(st.nextToken());
-		arr = new int[N];
-		st = new StringTokenizer(br.readLine());
-		arr[0] = Integer.parseInt(st.nextToken());
-
-		//오름차순 체크
-		int plus_max = -1, sum = 1;
-		for (int i = 1; i < N; i++) {
+		for (int i = 0; i < N; i++) {
 			arr[i] = Integer.parseInt(st.nextToken());
-			if (arr[i - 1] <= arr[i]) {
-				sum++;
-			} else { //틀린 경우에만 체크하고 나중에 sum == N일때만 갱신한다면 놓친다
-				if (plus_max < sum)
-					plus_max = sum;
-				sum = 1; //1부터 시작
-			}
+			if (arr[i] == 0)
+				joker++;
 		}
-		if (plus_max < sum)
-			plus_max = sum;
-
-		//내림차순 체크
-		int minus_max = -1;
-		sum = 1;
-		for (int i = 1; i < N; i++) {
-			if (arr[i - 1] >= arr[i]) {
-				sum++;
-			} else {
-				if (minus_max < sum)
-					minus_max = sum;
-				sum = 1; //1부터 시작
-			}
-		}
-		if (minus_max < sum)
-			minus_max = sum;
-		int Max = minus_max >= plus_max ? minus_max : plus_max;
+		Arrays.sort(arr);
 		
-		System.out.print(Max);
+		int max = 0;
+		for (int i = joker; i < N; i++) { // 0 다음부터 돌기 시작 
+			int pre = arr[i];
+			int joker_c = joker;
+			int sum =1;
+			//간단하게 생각해보자
+			//한칸 씩 뒤로 가면서 끝까지 탐색하고 길이를 재볼꺼니까 조커 넣을 수 있는 곳에 다 넣어봄
+			for(int j = i+1; j < N; j++) {
+				if(arr[j] - pre == 0) //앞 뒤 같은 경우
+					continue;
+				else if(arr[j] - pre -1 <= joker_c) { //스트레이트일때랑 조커 있는경우
+					int diff = arr[j] - pre - 1;
+					sum += diff+1; //스트레이트 일때는 1증가 조커일때는 2증가
+					joker_c -= diff;
+					pre = arr[j];
+				}
+				else break;
+			}
+			max = Math.max(max, sum+joker_c);
+			
+			//내가 생각한 너무 복잡한 방법 90% 맞음
+//			out:for (int j = i + 1; j < N; j++) { 
+//				int cur = arr[j];
+//				if (pre + 1 == cur) {
+//					sum++;
+//				} else { // 조커도 없고 스트레이트 아닐때
+//					if (joker_c > 0) {
+//						sum++;
+//						joker_c--;
+//						pre = pre+1;
+//						j--; //j 증가안하도록
+//						continue out;
+//					}
+//					else if (max < sum)
+//						max = sum;
+//					sum = 1;
+//				}
+//				pre = cur;
+//			}
+//			if(joker_c > 0) {
+//				sum += joker_c;
+//			}
+//			if (max < sum)
+//				max = sum;
+		}
+		
+		if(joker == N) max = joker; //반례: 전부다 조커일때  for문 안도니까
+		
+		System.out.print(max);
 	}
 }
