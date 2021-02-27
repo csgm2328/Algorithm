@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 //하노이
-public class Main {
+public class _11729_하노이탑 {
 	static int cnt = 0;
 	static StringBuilder sb = new StringBuilder();
 
