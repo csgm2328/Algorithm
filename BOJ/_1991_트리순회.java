@@ -57,11 +57,9 @@ public class _1991_트리순회 {
 	}
 	static void inorder(int idx) {
 		//left --> root --> right
-		//왼쪽 끝 오른쪽 끝에서 출력
 		if(tree[idx].left != null)
 			inorder(tree[idx].left.val - 'A');
-		//왼쪽으로 갈 곳없으면 출력
-		sb.append(tree[idx].val); //올라가면서도 출력하게 됨
+		sb.append(tree[idx].val); //왼쪽으로 갈 곳없으면 출력
 		if(tree[idx].right != null)
 			inorder(tree[idx].right.val - 'A');
 		
@@ -71,7 +69,7 @@ public class _1991_트리순회 {
 			postorder(tree[idx].left.val - 'A');
 		if(tree[idx].right != null)
 			postorder(tree[idx].right.val - 'A');
-		sb.append(tree[idx].val); //오른쪽 자식 없으면 출력
+		sb.append(tree[idx].val); //왼쪽 오른쪽 자식 둘 다 없으면 출력
 	}
 	
 }
