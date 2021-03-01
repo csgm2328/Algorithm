@@ -9,10 +9,6 @@ public class _1149_RGB거리 {
 	static int N;
 	static int[][] arr;
 	static boolean[][] visited;
-	static int[] dr = { -1, 0, 1, 0 };
-	static int[] dc = { 0, 1, 0, -1 };
-
-	static StringBuilder sb = new StringBuilder();
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -22,41 +18,30 @@ public class _1149_RGB거리 {
 		arr = new int[N][3];
 		visited = new boolean[N][3];
 		int[][] dp = new int[N][3];
-		int sum = 0;
-		int col = -1;
+		
 		for (int i = 0; i < N; i++) {
 			StringTokenizer st = new StringTokenizer(br.readLine());
-			int Min = Integer.MAX_VALUE;
-			for (int j = 0; j < 3; j++) {
+			for (int j = 0; j < 3; j++)
 				arr[i][j] = Integer.parseInt(st.nextToken());
-				if (i == 0 && Min > arr[i][j]) {
-					Min = arr[i][j];
-				}
-			}
-//			dp[0] = Min;
 		}
+		// 처음은 그대로
 		dp[0][0] = arr[0][0];
 		dp[0][1] = arr[0][1];
 		dp[0][2] = arr[0][2];
-
+		// 두번째부터 전꺼 세개중에 겹치는 거 빼고 작은거를 골라 더해줌
+		// 세가지를 유지하면서 감
 		for (int i = 1; i < N; i++) {
 			dp[i][0] = Math.min(dp[i - 1][1], dp[i - 1][2]) + arr[i][0];
-			dp[i][1] = Math.min(dp[i - 1][0], dp[i - 1][2])+ arr[i][1] ;
-			dp[i][2] = Math.min(dp[i - 1][1], dp[i - 1][0])+ arr[i][2];
+			dp[i][1] = Math.min(dp[i - 1][0], dp[i - 1][2]) + arr[i][1];
+			dp[i][2] = Math.min(dp[i - 1][1], dp[i - 1][0]) + arr[i][2];
 		}
 
 //		combination(0,-1, -1, 0);
-		int Min = Integer.MAX_VALUE;
-		for(int i =0; i< 3; i++) {
-			if(Min > dp[N-1][i])
-				Min = dp[N-1][i];
-		}
-		System.out.print(Min);
+		System.out.print(Math.min(dp[N-1][0], Math.min(dp[N-1][1], dp[N-1][2])));
 	}
 
 	// 중복조합
 	static int Min = Integer.MAX_VALUE;
-
 	private static void combination(int cnt, int row, int col, int sum) {
 		if (cnt == N) {
 			if (Min > sum)
