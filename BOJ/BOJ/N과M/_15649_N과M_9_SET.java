@@ -1,4 +1,4 @@
-package BOJ.순열과조합;
+package BOJ.N과M;
 
 import java.io.BufferedReader;
 import java.io.IOException;

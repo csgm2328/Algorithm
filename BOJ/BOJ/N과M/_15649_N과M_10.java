@@ -1,4 +1,4 @@
-package BOJ.순열과조합;
+package BOJ.N과M;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,11 +7,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.StringTokenizer;
 
-//중복 조합의 결과에서 중복된 수열 삭제
-public class _15649_N과M_12 {
+//조합의 결과에서 중복된 수열 삭제
+public class _15649_N과M_10 {
 	static int N, M;
-	static ArrayList<Integer> arr;
-	static int[] save;
+	static int[] arr = new int[10001];
+	static ArrayList<Integer> input, dupl;
+	static int[] save, check;
 	static StringBuilder sb = new StringBuilder();
 
 	public static void permutation(int cnt,int start) {
@@ -19,15 +20,19 @@ public class _15649_N과M_12 {
 			for (int i = 0; i < cnt; ++i)
 				sb.append(save[i]).append(' ');
 			sb.append('\n');
+
 			return;
 		}
-		
-		int before = 0; // 전에 껄 가지고 있음 중복 수열 체크
-		for (int i = start; i < arr.size(); ++i) {
-			if (i == 0 || before != arr.get(i)) {
-				before = arr.get(i);
-				save[cnt] = arr.get(i);
-				permutation(cnt + 1,i);
+		int before = 0; // 전에 껄 가지고 있음 중복 체크
+		for (int i = start; i < input.size(); ++i) {
+			if (check[i] == 1)
+				continue;
+			else if (check[i] == 0 && (i == 0 || before != input.get(i))) {
+				before = input.get(i);
+				check[i] = 1;
+				save[cnt] = input.get(i);
+				permutation(cnt + 1,i+1);
+				check[i] = 0;
 			}
 		}
 	}
@@ -39,16 +44,18 @@ public class _15649_N과M_12 {
 		N = Integer.parseInt(st.nextToken());
 		M = Integer.parseInt(st.nextToken());
 
-		arr = new ArrayList<Integer>();
+		input = new ArrayList<Integer>();
+		dupl = new ArrayList<Integer>();
+		check = new int[N];
 		save = new int[M];
 
 		st = new StringTokenizer(bw.readLine());
 		for (int i = 0; i < N; i++) {
 			int x = Integer.parseInt(st.nextToken());
-			arr.add(x);
+			input.add(x);
 		}
 		// 정렬한 후 표시
-		Collections.sort(arr);
+		Collections.sort(input);
 
 		permutation(0,0);
 		System.out.print(sb.toString());

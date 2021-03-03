@@ -1,4 +1,4 @@
-package BOJ.순열과조합;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;

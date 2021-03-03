@@ -1,4 +1,4 @@
-package BOJ.순열과조합;
+package BOJ.N과M;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,13 +6,13 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-//자기자신부터 시작해서 중복을 허용하는 조합
-public class _15649_N과M_8 {
+//중복순열 check없음
+public class _15649_N과M_7 {
 	static int N, M;
 	static int[] arr, save;
 	static StringBuilder sb = new StringBuilder();
 	
-	static void combination(int cnt, int start) {
+	static void combination(int cnt) {
 		if(M == cnt) {
 			for(int i =0; i< M; i++) {
 				sb.append(save[i] + " ");
@@ -21,9 +21,9 @@ public class _15649_N과M_8 {
 			return;
 		}
 		
-		for(int i = start; i< N; i++) {
+		for(int i = 0; i< N; i++) {
 			save[cnt] = arr[i];
-			combination(cnt+1,i); //i부터 시작
+			combination(cnt+1);
 		}
 	}
 
@@ -42,8 +42,8 @@ public class _15649_N과M_8 {
 			arr[i] = Integer.parseInt(st.nextToken());
 		}
 		Arrays.sort(arr);
-		combination(0,0);
-		System.out.println(sb.toString());
+		combination(0);
+		System.out.print(sb.toString());
 	}
 }
 

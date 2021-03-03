@@ -1,4 +1,4 @@
-package BOJ.순열과조합;
+package BOJ.N과M;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,15 +7,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.StringTokenizer;
 
-//중복 순열의 결과에서 중복된 수열 삭제
-//check할 필요없음
-public class _15649_N과M_11 {
+//중복 조합의 결과에서 중복된 수열 삭제
+public class _15649_N과M_12 {
 	static int N, M;
 	static ArrayList<Integer> arr;
 	static int[] save;
 	static StringBuilder sb = new StringBuilder();
 
-	public static void permutation(int cnt) {
+	public static void permutation(int cnt,int start) {
 		if (cnt == M) {
 			for (int i = 0; i < cnt; ++i)
 				sb.append(save[i]).append(' ');
@@ -24,11 +23,11 @@ public class _15649_N과M_11 {
 		}
 		
 		int before = 0; // 전에 껄 가지고 있음 중복 수열 체크
-		for (int i = 0; i < arr.size(); ++i) {
+		for (int i = start; i < arr.size(); ++i) {
 			if (i == 0 || before != arr.get(i)) {
 				before = arr.get(i);
 				save[cnt] = arr.get(i);
-				permutation(cnt + 1);
+				permutation(cnt + 1,i);
 			}
 		}
 	}
@@ -51,7 +50,7 @@ public class _15649_N과M_11 {
 		// 정렬한 후 표시
 		Collections.sort(arr);
 
-		permutation(0);
+		permutation(0,0);
 		System.out.print(sb.toString());
 	}
 }
