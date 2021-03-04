@@ -1,52 +1,96 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.Scanner;
 import java.util.StringTokenizer;
 
-//하노이
-public class Main {
-	static int cnt = 0;
-	static StringBuilder sb = new StringBuilder();
+//Z
+//R,C가 4일때
+//2로 나눌 수 있으면
+//나누고 (0,0) 부터 (0,0+4/2), (0+2,0), (2,2)에서 시작한다
+//방향은 딱 두가지
+//근데 범위체크가 시작점에서 R+2,c+2이다
 
+public class Main {
+	static StringBuilder sb = new StringBuilder();
+	static int N;
+	static char[][] arr;
+	static boolean[][] visit;
+
+	static int[] dr = { 0, 1};
+	static int[] dc = { 1, -1};
+	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		// global init
+		N = Integer.parseInt(br.readLine());
+		int R = (int) Math.pow(2, N);
+		int C = (int) Math.pow(2, N);
+		arr = new char[R][C];
 
-		int N = Integer.parseInt(br.readLine());
-		hanoi(N, 1, 2, 3);
-		System.out.println(cnt);
-		System.out.print(sb.toString());
+		// input
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		for (int i = 0; i < N; i++)
+			arr[i] = st.nextToken().charAt(0);
 
+		permutaion(0, 0);
+		sb.append(Max_res + "\n" + Min_res);
+
+		// output
+		System.out.print(sb.toString()); // 0이 시ㅅ작이니까 0일때만
 	}
 
-	// 1. n-1개 원판 이동 ( 시작 -> 임시) : 재귀
-	// 2. n번째 원판 이동( 시작 -> 목적)
-	// 3. n-1개 원판 이동( 임시 -> 목적) : 재귀
-	private static void hanoi(int n, int start, int temp, int to) {
-		// TODO Auto-generated method stub
-		if (n == 1) {
-			move(n, start, to);	//1개일때는 바로이동
-		} else {
-			hanoi(n - 1, start, to, temp); // n-1개를 시작에서 중간으로
-			move(n, start, to);				// n번째를 목적으로
-			hanoi(n - 1, temp, start, to);	// n-1개를 임시에서 목적으로
-		}
-	}
-
-	private static void move(int n, int start, int to) { //함수 호출 324 + 56ms
-		cnt++;
-		sb.append(start + " " + to + "\n");
-	}
-
-	// 라이브 강의
-	private static void hanoi1(int n, int start, int temp, int to) { //324 - 44ms
-		if (n == 0)
+	private static void permutaion(int saveIdx, int operIdx) {
+		if (saveIdx == N + 1) { // 부등호개수보다 한개많을때 탈출
+			long num = 0;
+			String res = "";
+			for (int i = 0; i < N + 1; i++) {
+				num += (long) ((save[i] - '0') * Math.pow(10, N - i)); // long cast 실수
+				res += save[i];
+			}
+			if (Max < num) {
+				Max = num;
+				Max_res = res;
+			}
+			if (Min > num) {
+				Min = num;
+				Min_res = res;
+			}
 			return;
+		}
 
-		hanoi(n - 1, start, to, temp); // n-1개를 start 시작에서 중간으로
-		cnt++;
-		sb.append(start + " " + to + "\n");
-		hanoi(n - 1, temp, start, to);
+		// 0 ~ 9
+		for (int i = 0; i < 10; i++) {
+			// 그 숫자 안썼고 부등호가 성립하면 go
+			if (visit[i])
+				continue;
+			if (saveIdx == 0) { // 처음은 그냥 넣고
+				save[saveIdx] = Character.forDigit(i, 10);
+				visit[i] = true;
+				permutaion(saveIdx + 1, operIdx);
+				visit[i] = false;
+			} else {
+				switch (arr[operIdx]) { // 해당위치의 부등호 체크
+				case '<':
+					if (save[saveIdx - 1] - '0' < i) {
+						save[saveIdx] = Character.forDigit(i, 10);
+						visit[i] = true;
+						permutaion(saveIdx + 1, operIdx + 1);
+						visit[i] = false;
+					}
+					break;
+				case '>':
+					if (save[saveIdx - 1] - '0' > i) {
+						save[saveIdx] = Character.forDigit(i, 10);
+						visit[i] = true;
+						permutaion(saveIdx + 1, operIdx + 1);
+						visit[i] = false;
+					}
+					break;
+
+				default:
+					break;
+				}
+			}
+		}//end for
 	}
 }
