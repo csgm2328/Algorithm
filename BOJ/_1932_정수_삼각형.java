@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 //트리구조에서 가장 큰 경로 찾는 DP
+//1차원 배열로 풀면 332-130ms
+//2차원 리스트로 동적 객체 생성과 검색이 느린듯
 public class _1932_정수_삼각형 {
 	static StringBuilder sb = new StringBuilder();
 	static int N;

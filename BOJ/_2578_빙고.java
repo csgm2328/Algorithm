@@ -25,7 +25,7 @@ public class _2578_빙고 {
 			StringTokenizer st = new StringTokenizer(br.readLine());
 			for (int j = 0; j < N; j++) {
 //				me.add(Integer.parseInt(st.nextToken()), new int[] { i, j });
-				na[Integer.parseInt(st.nextToken())] = new int[] { i, j };
+				na[Integer.parseInt(st.nextToken())] = new int[] { i, j }; //1~25위치 저장
 			}
 		}
 		int index = 0;
@@ -40,8 +40,8 @@ public class _2578_빙고 {
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < N; j++) {
 //				int[] x = me.get(MC[index++]);
-				int[] x = na[MC[index++]];
-				bingo[x[0]][x[1]] = 1;
+				int[] x = na[MC[index++]]; 
+				bingo[x[0]][x[1]] = 1; //그 숫자를 쓴 위치 받아와서 빙고판에다 맞은 표 시
 				cnt++;
 				if (cnt >= 12) { // 맞은게 12개 넘을때부터 체크
 					if (bingocheck()) {

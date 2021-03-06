@@ -14,12 +14,8 @@ import java.util.StringTokenizer;
 public class _1074_Z {
 	static StringBuilder sb = new StringBuilder();
 	static int N, r, c;
-	static char[][] arr;
 	static long cnt; // 재귀가 방문한 횟수
-
-	static int[] dr = { 0, 1, 1 };
-	static int[] dc = { 1, 0, 1 };
-
+	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		// global init
