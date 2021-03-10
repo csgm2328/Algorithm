@@ -15,10 +15,6 @@ public class _14891_톱니바퀴 {
 	static StringBuilder sb = new StringBuilder();
 	static int N, K;
 	static int num, dir; // 톱니번호 , 방향
-//	static Deque<Character> dq1 = new LinkedList<>();
-//	static Deque<Character> dq2 = new LinkedList<>();
-//	static Deque<Character> dq3 = new LinkedList<>();
-//	static Deque<Character> dq4 = new LinkedList<>();
 	static char[][] dq = new char[5][8];
 	static int[] index = { 0, 2, 2, 2, 6 }, tw = new int[5];
 	static int sum;
@@ -38,6 +34,7 @@ public class _14891_톱니바퀴 {
 			int re_dir = cur[1] == 1 ? -1 : 1;
 
 			switch (cur[0]) {
+			//톱니바퀴수가 늘때는 visit처리할 거를 하나 더 만들어야함
 			case 1:
 				if (dq[1][index[1]] != dq[2][(index[2] + 4) % 8]) {
 					if (dq[2][index[2]] != dq[3][(index[3] + 4) % 8]) {
