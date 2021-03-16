@@ -9,6 +9,9 @@ import java.util.StringTokenizer;
 //물 높이보다 높은 거를 찾으면 들어가서 BFS한다음에
 //그걸 check할 수도 있지만
 //들어가면서 -1씩 해주면 탐색 중에 check를 하지 않아도 됨
+//dfs는 328 -110ms임
+//왜일까? 큐작업이 이정도걸리는건가
+//그리고 못살아남는거 있으면 바로 끝내는게 더 오래걸림 0~100까지하는거보다
 public class _2468_안전영역 {
 	static int[][] arr;
 	static int[] dr = { -1, 1, 0, 0 };

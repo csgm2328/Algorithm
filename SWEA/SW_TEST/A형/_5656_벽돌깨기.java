@@ -75,8 +75,6 @@ public class _5656_벽돌깨기 {
 			}
 			return;
 		}
-		
-		
 		for (int i = 0; i < M; i++) { // NPk 열에서 3개고르는 중복순열 k^M
 			//새로운 게 선택될 때마다 현재의 deepcopy로 복사본을 계속 넘겨줘야함
 			int[][] copy = new int[N][M];
