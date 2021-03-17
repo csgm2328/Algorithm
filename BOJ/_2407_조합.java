@@ -1,7 +1,7 @@
 
 import java.io.IOException;
 import java.util.Arrays;
-
+//조합을 만드는 세가지 방법
 public class _2407_조합 {
 	
 //	3방법의 시간복잡도는 같다 int한계인 100 6 까지 4초가량 걸림
@@ -53,7 +53,7 @@ public class _2407_조합 {
 	static int n = 4, r = 2; 
 	static int[] save; //뽑는 r 만큼 사이즈
 	
-	//라이브강의
+	//라이브강의 -- 이게 표준인듯
 	static void combination3(int cnt, int start) {
 		if(r == cnt) {
 			System.out.println(Arrays.toString(save));
