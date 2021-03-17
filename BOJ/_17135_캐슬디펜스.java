@@ -100,7 +100,7 @@ public class _17135_캐슬디펜스 {
 				for (int dir = 0; dir < 3; dir++) {
 					int nr = cur.r + dr[dir];
 					int nc = cur.c + dc[dir];
-					if (0 <= nr && nr < N && 0 <= nc && nc < M && !visited[nr][nc]) {
+					if (0 <= nr && nr < N && 0 <= nc && nc < M) {
 						if (copy[nr][nc] > 0) { // 적 발견
 							// 왼쪽이나 위에서 찾았다면 바로 킬하고 처리 -> 실수포인트: 위에가 다음궁수가 쏠 위치일 수도 있다
 							arrow[cur.archer] = 0;
