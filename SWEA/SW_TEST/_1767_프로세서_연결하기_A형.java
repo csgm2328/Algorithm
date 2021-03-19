@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
-
+//테케 50/44 fail
 public class _1767_프로세서_연결하기_A형 {
 	static int N;
 	static int line_MIN, connect_MAX;
@@ -46,9 +46,9 @@ public class _1767_프로세서_연결하기_A형 {
 
 	private static void backtrack(int[][] map, List<int[]> cores, int connect_cnt, int line_sum,int start) {
 		// backtrack: 진행중에 전선수가 초과하면 return;
-		if (line_MIN < line_sum) {
-			return;
-		}
+//		if (line_MIN < line_sum) { //이러면 조합에서 반례가 생긴다 이걸로 44/50 fail
+//			return;
+//		}
 		// 코어 리스트를 돌면서
 		// 해당 코어를 일부러 포기하고 다른 걸 연결할때 답인경우
 		// 조합으로  coresize C 0~연결할 수있는만큼
