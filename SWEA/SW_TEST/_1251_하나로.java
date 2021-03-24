@@ -33,6 +33,8 @@ public class _1251_하나로 {
 			for (int i = 0; i < N; i++)
 				posY[i] = Integer.parseInt(st.nextToken());
 			double E = Double.parseDouble(input.readLine());
+			
+			//각 정점끼리의 간선을 거리로 계산해서 인접 배열로 셋팅
 			double[][] adjArr = new double[N][N];
 			for (int i = 0; i < N; i++) {
 				for (int j = 0; j < N; j++) {
@@ -44,13 +46,13 @@ public class _1251_하나로 {
 					adjArr[i][j] = dis;
 				}
 			}
+			List<Integer> S = new ArrayList<Integer>(); // 신장트리
 			double[] savedShortestPath = new double[N]; // dp
-			boolean[] visited = new boolean[N]; // 이걸로 S-V 체크
+			boolean[] visited = new boolean[N]; // 이걸로 S-V(아직 신장트리에 포함안된 정점 체크)
 
 			Arrays.fill(savedShortestPath, Double.MAX_VALUE);
-			savedShortestPath[0] = 0;
-			List<Integer> S = new ArrayList<Integer>(); // 신장트리
-			double sum = 0;
+			savedShortestPath[0] = 0; // 1. 시작정점 선택
+			double sum = 0; // 누적 가중치 저장
 			// 다익스트라 아니고 프림
 			while (S.size() < N) {
 				// 2. 미포함 정점 중 출발지에서 가장 최소비용의 정점 선택
@@ -66,7 +68,6 @@ public class _1251_하나로 {
 				// 4. 선택된거 신장트리에 포함시킴
 				visited[selectedVertex] = true;
 				sum += savedShortestPath[selectedVertex] * savedShortestPath[selectedVertex];
-//				sum += savedShortestPath[selectedVertex];
 				S.add(selectedVertex);
 			}
 			sb.append("#" + tc + " " + Math.round(E * sum) + "\n");
@@ -74,11 +75,10 @@ public class _1251_하나로 {
 		System.out.println(sb.toString());
 	}
 
-	// 이 함수 필요없고 가중치가 갱신될때 큐에 추가해야함
 	private static int extractMin(boolean[] visited, double[] savedShortestPath) {
 		double min = Double.MAX_VALUE;
 		int minVertex = 0;
-		for (int i = 0; i < visited.length; i++) {
+		for (int i = 0; i < N; i++) {
 			// 아직 S에 포함안되었으면서(미방문) 가중치가 가장 적은거 선택
 			if (!visited[i] && savedShortestPath[i] < min) {
 				min = savedShortestPath[i];
