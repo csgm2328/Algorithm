@@ -7,10 +7,10 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-class xyc {
+class xy {
 	int x, y, cnt;
 
-	public xyc(int x, int y, int cnt) {
+	public xy(int x, int y, int cnt) {
 		this.x = x;
 		this.y = y;
 		this.cnt = cnt;
@@ -39,14 +39,14 @@ public class 정사각형_방 {
 				}
 			}
 
-			Queue<xyc> q = new LinkedList<xyc>();
+			Queue<xy> q = new LinkedList<xy>();
 			int maxRoom = Integer.MAX_VALUE, maxCount = -1;
 			for (int i = 0; i < N; i++) {
 				for (int j = 0; j < N; j++) {
 					// 방마다 큐에 넣으면서 시작
 					boolean[][] visited = new boolean[N][N]; // 매 시작점마다 초기화해야니까
 					visited[i][j] = true;
-					q.offer(new xyc(i, j, 1));
+					q.offer(new xy(i, j, 1));
 					// bfs
 					while (!q.isEmpty()) {
 						int cu_row = q.peek().x;
@@ -72,7 +72,7 @@ public class 정사각형_방 {
 																												// 다음이 1
 																												// 더 크면
 									visited[NextR][NextC] = true;
-									q.offer(new xyc(NextR, NextC, cu_cnt + 1));
+									q.offer(new xy(NextR, NextC, cu_cnt + 1));
 									break; // 어차피 1큰거는 4방향중에 하나다
 									//큐를 안쓰고 위치갱신만하고 dir = 0으로 만들어서
 									//이동한 위치에서 사방탐색 반복한다 갈 곳은 한곳뿐이라 가능하네

@@ -29,7 +29,6 @@ public class _14503_로봇청소기 {
 			this.dir = dir;
 			this.sum = sum;
 		}
-
 	}
 	static vaccum vaccum;
 	

@@ -6,6 +6,7 @@ import java.util.Arrays;
 // cubeEditor
 // 부분문자열을 중복을 제거하는 거에서
 // 중복을 체크할 때 몇개가 중복되는지 체크하니까 그게 가장 큰 수를 리턴하면 끝
+// 문자열 최대 5000
 public class _1701_CubeEditor {
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 	static int MAX = -1;
@@ -27,8 +28,8 @@ public class _1701_CubeEditor {
 		for(int i = 0; i < s1.length(); i++) {
 			if(i > s2.length()-1)
 				break;
-			if(s1.charAt(i) == s2.charAt(i)) 
-				common_cnt++; //같은거의 길이 센다
+			if(s1.charAt(i) == s2.charAt(i)) //같다는건 공통문자열이 두번이상 나온다는 뜻
+				common_cnt++; //그 공통문자열의 길이를 센다
 			else //공통문자열이 한번끊기면 그만
 				break;
 		}

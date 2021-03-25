@@ -31,7 +31,7 @@ public class _1149_RGB거리 {
 		// 두번째부터 전꺼 세개중에 겹치는 거 빼고 작은거를 골라 더해줌
 		// 세가지를 유지하면서 감
 		for (int i = 1; i < N; i++) {
-			dp[i][0] = Math.min(dp[i - 1][1], dp[i - 1][2]) + arr[i][0];
+			dp[i][0] = Math.min(dp[i - 1][1], dp[i - 1][2]) + arr[i][0]; //이번칸 빨강으로 칠하려면 전칸 노랑,파랑중 작은거 고름
 			dp[i][1] = Math.min(dp[i - 1][0], dp[i - 1][2]) + arr[i][1];
 			dp[i][2] = Math.min(dp[i - 1][1], dp[i - 1][0]) + arr[i][2];
 		}

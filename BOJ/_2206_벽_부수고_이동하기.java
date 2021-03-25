@@ -31,7 +31,7 @@ public class _2206_벽_부수고_이동하기 {
 			this.r = r;
 			this.c = c;
 			this.cnt = cnt;
-			this.crash = crash;
+			this.crash = crash; //해당 경로가 가면서 부순 횟수
 		}
 	}
 
@@ -46,10 +46,10 @@ public class _2206_벽_부수고_이동하기 {
 		R = Integer.parseInt(st.nextToken());
 		C = Integer.parseInt(st.nextToken());
 		arr = new int[R][C];
-		visited = new boolean[R][C];
-		visit = new int[R][C];
-		for(int x[]: visit)
-		Arrays.fill(x, Integer.MAX_VALUE);
+		visited = new boolean[R][C]; // dfs용
+		visit = new int[R][C]; // bfs용
+		for (int x[] : visit)
+			Arrays.fill(x, Integer.MAX_VALUE); //더 적게 부수고 이동하는 경로일때만 방문하게 해줄거임
 
 //		List<int[]> walls = new ArrayList<int[]>();
 		for (int i = 0; i < R; i++) {
@@ -81,7 +81,7 @@ public class _2206_벽_부수고_이동하기 {
 //			if (Min > sum)
 //				Min = sum;
 //		}
-		bfs(0,0);
+		bfs(0, 0);
 //		dfs(0, 0, 1);
 		System.out.println(Min == Integer.MAX_VALUE ? -1 : Min);
 	}
@@ -102,16 +102,15 @@ public class _2206_벽_부수고_이동하기 {
 				int nc = cur.c + dc[dir];
 
 				if (nr >= 0 && nr < R && nc >= 0 && nc < C) {// 범위 안이면
-					//for문으로 벽 지우는 경우의 수 다 안해봐도 crash 카운트 떄문에 같은 효과를 냄
-					//하지만 crash 카운트로 자신보다 큰 초기화상태나 부순경우를 안부수고 갈 경우에만 방문하게된다
-					if (visit[nr][nc] <= cur.crash) 
+					// for문으로 벽 지우는 경우의 수 다 안해봐도 crash 카운트 떄문에 같은 효과를 냄
+					// 하지만 crash 카운트로 자신보다 큰 초기화상태나 부순경우를 안부수고 갈 경우에만 방문하게된다
+					if (visit[nr][nc] <= cur.crash)
 						continue;
-					
-					if (arr[nr][nc] == 0) {	//벽아닐떄
+
+					if (arr[nr][nc] == 0) { // 벽아닐떄
 						visit[nr][nc] = cur.crash;
 						q.offer(new xycc(nr, nc, cur.cnt + 1, cur.crash));
-					} 
-					else { // 벽일때
+					} else { // 벽일때
 						if (cur.crash == 0) { // 부실 수있으면
 							visit[nr][nc] = cur.crash + 1;
 							q.offer(new xycc(nr, nc, cur.cnt + 1, cur.crash + 1));

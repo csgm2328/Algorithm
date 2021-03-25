@@ -18,7 +18,7 @@ public class _2579_계단오르기 {
 		int[] steps = new int[N + 1];
 		for (int i = 1; i <= N; i++)
 			steps[i] = Integer.parseInt(input.readLine());
-
+		
 		int[][] dp = new int[N + 1][2];
 
 		dp[1][0] = steps[1]; // 1칸 오르기
@@ -29,6 +29,8 @@ public class _2579_계단오르기 {
 			dp[i][0] = dp[i - 1][1] + steps[i];
 			dp[i][1] = Math.max(dp[i - 2][0], dp[i - 2][1]) + steps[i];
 		}
+//		for(int[] x: dp)
+//			System.out.println(Arrays.toString(x));
 		System.out.print(Math.max(dp[N][0], dp[N][1]));
 
 	}

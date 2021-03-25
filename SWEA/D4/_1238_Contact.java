@@ -36,14 +36,13 @@ public class _1238_Contact {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
-
 		T = 10;
 		for (int tc = 1; tc <= T; tc++) {
 			StringTokenizer st = new StringTokenizer(br.readLine());
 			length = Integer.parseInt(st.nextToken());
 			start =Integer.parseInt(st.nextToken());
 			
-			//인접리스트로 해보자 119 - 6ms
+			//인접리스트로 해보자 119  - 6ms
 			Node[] adjList = new Node[101];
 			boolean[] visited = new boolean[101]; //인원 100명
 			st = new StringTokenizer(br.readLine());
@@ -77,7 +76,7 @@ public class _1238_Contact {
 				}
 			}
 			
-			
+			//2차원 리스트 - 1번 풀이
 //			List<List<Integer>> arr = new ArrayList<List<Integer>>();
 //			boolean[] visited = new boolean[101]; //인원 100명
 //			for(int i =0; i<= 100; i++) 

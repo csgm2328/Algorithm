@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class _17136_색종이붙이기_참고 {
+public class _17136_색종이붙이기_강의{
 	static int[][] map = new int[10][10];
 	static int[] paper = {0, 5, 5, 5, 5, 5};
 	static int ans = 987654321;

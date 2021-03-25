@@ -5,7 +5,8 @@ import java.util.Arrays;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-//문제 잘읽자 숫자 3개 고정이다
+// 문제 잘읽자 숫자 3개 고정이다
+// 10만 x 10만은 어떻게 해도 안되는데 왜 하고 있었지?
 public class _2096_내려가기 {
 	static BufferedReader input;
 //	static StringBuilder output;
@@ -22,21 +23,12 @@ public class _2096_내려가기 {
 		int[] saveMax = new int[3]; // 저장
 		int[] saveMin = new int[3];
 
-		// 첫칸은 먼저저장
+		// 첫행은 먼저저장
 		st = new StringTokenizer(input.readLine());
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 3; i++)
 			saveMax[i] = saveMin[i] = Integer.parseInt(st.nextToken());
-			if (N == 1) { //1일 때
-				if (saveMax[i] > MAX) {
-					MAX = saveMax[i];
-				}
-				if (saveMin[i] < MIN) {
-					MIN = saveMin[i];
-				}
-			}
-		}
 
-		// 다음 칸부터
+		// 다음 행부터
 		for (int i = 1; i < N; i++) {
 			st = new StringTokenizer(input.readLine());
 			int[] input = new int[3]; // 입력
@@ -45,9 +37,11 @@ public class _2096_내려가기 {
 				//			입력을 다받고 save 하나씩 보는 거였다
 				input[j] = Integer.parseInt(st.nextToken());
 			}
+			
 			int[] tempMax = new int[3]; // 임시
 			int[] tempMin = new int[3]; // 임시
 			Arrays.fill(tempMin, Integer.MAX_VALUE);
+			
 			for(int j = 0; j< 3; j++) {
 				// 최대 저장
 				for (int dir = 0; dir < 3; dir++) {
@@ -62,26 +56,21 @@ public class _2096_내려가기 {
 						tempMin[nr] = input[nr] + saveMin[j];
 				}
 			}
-
 			// 슬라이딩 윈도우: save 갱신
-			for (int k = 0; k < 3; k++) {
+			for (int k = 0; k < 3; k++) 
 				saveMax[k] = tempMax[k];
-				if (i == N - 1) {
-					if (saveMax[k] > MAX) {
-						MAX = saveMax[k];
-					}
-				}
-			}
-			// save갱신
-			for (int k = 0; k < 3; k++) {
+			for (int k = 0; k < 3; k++)
 				saveMin[k] = tempMin[k];
-				if (i == N - 1) {
-					if (saveMin[k] < MIN) {
-						MIN = saveMin[k];
-					}
-				}
-			}
 		} // end input
+		
+		for (int k = 0; k < 3; k++) {
+			if (saveMax[k] > MAX) {
+				MAX = saveMax[k];
+			}
+			if (saveMin[k] < MIN) {
+				MIN = saveMin[k];
+			}
+		}
 		System.out.print(MAX + " " + MIN);
 	}
 
