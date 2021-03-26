@@ -21,7 +21,7 @@ public class _17472_다리만들기_2 {
 	static StringTokenizer st;
 	static int N, M;
 	static int[][] arr;
-	static boolean[][] visited;
+	static boolean[][] visited; //섬 번호를 2부터 쓴다면 필요 없음
 	static int[][] adjIsland;
 
 	static int[] dr = { 0, -1, 1, 0 };
@@ -50,6 +50,7 @@ public class _17472_다리만들기_2 {
 			for (int j = 0; j < M; j++)
 				arr[i][j] = Integer.parseInt(st.nextToken());
 		}
+		//섬 번호 표시
 		int island_No = 1;
 		Queue<xy> q = new LinkedList<xy>();
 		for (int i = 0; i < N; i++) {
@@ -64,7 +65,6 @@ public class _17472_다리만들기_2 {
 			}
 		}
 		// 섬번호 써놨으면 자신 아닌거 만나면 가중치 정보 저장
-//		Queue<xy> searchQ = new LinkedList<xy>();
 		adjIsland = new int[island_No][island_No]; // 섬 개수만큼
 		for (int[] x : adjIsland)
 			Arrays.fill(x, Integer.MAX_VALUE);
