@@ -4,36 +4,23 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 import java.util.StringTokenizer;
-
-import javax.print.attribute.standard.Sides;
 
 // 최소 신장트리를 만드는 최소 가중치는 프림이나 크루스칼
 // 음의 값이 있어도 유니온으로 사이클이 생기지 않게 하므로 상관없다
+// 크루스칼의 시간 복잡도
+// 간선 정렬  + make() + find()
+//=O(ElogE) + O(V) + O(E)
+// E는 최대 V^2 --> logE = logV^2 = 2logV = logV
+// 따라서, O(ElogV)로 정렬시간이 좌우한다
+
 public class _1197_최소_스패닝_트리 {
 	static BufferedReader br;
 	static StringTokenizer st;
 	static int V, E; // 정점, 간선
 	static int[][] adjMatrix;
-	static boolean[][] visited;
 	static int[] parents;
-
-	static int[] dr = { 0, -1, 1, 0 };
-	static int[] dc = { 1, 0, 0, -1 };
-
-	static class xy {
-		int r, c;
-
-		public xy(int r, int c) {
-			this.r = r;
-			this.c = c;
-		}
-	}
 
 	static class WeightComparator implements Comparator<int[]> {
 		@Override
@@ -45,9 +32,9 @@ public class _1197_최소_스패닝_트리 {
 	public static void main(String[] args) throws IOException {
 		// global init
 		br = new BufferedReader(new InputStreamReader(System.in));
-		st = new StringTokenizer(br.readLine());
-		V = Integer.parseInt(st.nextToken()); // 1 ~ 1만
-		E = Integer.parseInt(st.nextToken()); // 1 ~ 10만
+		st = new StringTokenizer(br.readLine()); // 1922_네트워크 연결은 V,E 다른줄에
+		V = Integer.parseInt(st.nextToken()); // 1 ~ 10만
+		E = Integer.parseInt(st.nextToken()); // 1 ~ 100만
 		adjMatrix = new int[E][]; // 간선수 만큼 입력받음
 		parents = new int[V + 1];
 
@@ -67,15 +54,16 @@ public class _1197_최소_스패닝_트리 {
 		List<int[]> S = new ArrayList<>(); // 빈 신장트리
 		int sum = 0; // 가중치 합
 		// 3. union을 통해 신장트리를 키워간다
-		while (S.size() < V - 1) { // 신장트리의 간선수가 정점의 개수보다 하나작을때까지
-			for (int i = 0; i < E; i++) {
-				if (union(adjMatrix[i][0], adjMatrix[i][1])) {
-					S.add(adjMatrix[i]); // 정점이 아닌 간선을 저장
-					sum += adjMatrix[i][2];
-				}
+		for (int i = 0; i < E; i++) { // 간선 수 만큼 보면서 신장트리에 포함시키기
+			if (union(adjMatrix[i][0], adjMatrix[i][1])) {
+				S.add(adjMatrix[i]); // 정점이 아닌 간선을 저장
+				sum += adjMatrix[i][2];
+				if (S.size() == V - 1) // 신장트리가 정점-1개의 간선을 포함하면 끝
+					// 맨 뒤에 제일 큰 가중치는 다른 마을로 보내서 세지 않음: 1647_마을분할계획
+					break;
 			}
 		}
-//		S.forEach((temp) ->{
+//		S.forEach((temp) -> {
 //			System.out.println(Arrays.toString(temp));
 //		});
 		System.out.print(sum);
