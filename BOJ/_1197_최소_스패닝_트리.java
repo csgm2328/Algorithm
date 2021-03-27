@@ -14,8 +14,7 @@ import java.util.StringTokenizer;
 import javax.print.attribute.standard.Sides;
 
 // 최소 신장트리를 만드는 최소 가중치는 프림이나 크루스칼
-// 음의 값을 허용하므로 벨만포드
-
+// 음의 값이 있어도 유니온으로 사이클이 생기지 않게 하므로 상관없다
 public class _1197_최소_스패닝_트리 {
 	static BufferedReader br;
 	static StringTokenizer st;
