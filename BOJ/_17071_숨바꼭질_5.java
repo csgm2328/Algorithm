@@ -45,10 +45,11 @@ public class _17071_숨바꼭질_5 {
 				return -1; // 동생이 범위 나가면 못잡음
 			if (visited[K][time % 2])
 				break; // 동생이 수빈이가 방문한자리에 오면 잡은거
-			// 세 가지 경우
+			//BFS를 도는데 큐에들어있는게 같은 시간에 들어온 거라 사이즈별로 포문 돈다
 			int len = q.size();
 			for (int i = 0; i < len; i++) {
 				posTime cur = q.poll();
+				// 세 가지 경우
 				int nPos = cur.pos + 1;
 				if (nPos <= 500000 && !visited[nPos][1 - cur.time]) { // 현재가 짝수면 다음 홀수칸이 미방문인지확인
 					q.offer(new posTime(nPos, 1 - cur.time));
