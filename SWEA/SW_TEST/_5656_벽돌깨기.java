@@ -1,4 +1,4 @@
-package SW_TEST.A형;
+package SW_TEST;
 //구슬로 벽돌 좌우로 왔다갔다하면서 깨는데
 
 //벽돌에 써있는 만큼 4방향의 벽돌을 지우고

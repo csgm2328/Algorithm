@@ -1,4 +1,4 @@
-package SW_TEST.A형;
+package SW_TEST;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
