@@ -9,8 +9,9 @@ import java.util.StringTokenizer;
 // 활주로 건설
 // 가로 행 세로 행 확인하면서
 // 활주로 건설이 가능한 경우를 센다
+// 다음칸이 같은, 한칸높은, 한칸낮은 경우
+// 세가지에서 건설이 가능한 경우를 체크
 // 1. 높은거 만날때 낮은거 만날때 flag 바꾸면서 length >= X인지 체크
-// 1차이 이상 땅이 꺼지면 못만듬
 public class _4014_활주로_건설 {
 	static BufferedReader br;
 	static StringBuilder sb;
@@ -127,41 +128,4 @@ public class _4014_활주로_건설 {
 		} // end TC
 		System.out.println(sb.toString());
 	}
-
-	private static int check(boolean garo, int i, int j) {
-		int sum = 0;
-		for (i = 0; i < N; i++) {
-			int height = arr[i][0];
-			int length = 1;
-			boolean setable = true;
-			for (j = 1; j < N; j++) {
-				if (height == arr[i][j])
-					length++;
-				else if (height > arr[i][j]) { // 다음게 더 낮으면
-					if (!setable) { // 경사로 필요한 상태면
-						if (length < X)
-							break;
-					} // 맨 위인 경우
-					length = 1;
-					setable = false; // 경사로가 필요한상태로 변경
-				} else { // 다음게 더 높으면 경사로 설치 가능한지 바로 확인
-					if (length >= X) { // 경사로 길이가 되면
-						setable = true;
-						length = 1;
-					} else {
-						setable = false;
-						break; // 경사로 설치못하는행
-					}
-				}
-				height = arr[i][j];
-			} // end for j
-			// 한 행 다 봤으면
-			if (setable)
-				sum++;
-			else if (!setable && length >= X) // 경사로필요한 상태인데 만들수있다면
-				sum++;
-		}
-		return sum;
-	}
-	
 }
