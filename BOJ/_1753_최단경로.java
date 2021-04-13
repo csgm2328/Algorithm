@@ -65,7 +65,7 @@ public class _1753_최단경로 {
 			// 2. 미포함 정점 중 출발지에서 가장 최소비용의 정점 선택
 			Vertex u = pq.poll();
 			// 꺼냈는데 이미 포함된 정점이라면 패스
-			if (visited[u.No])
+			if (visited[u.No]) //업데이트되면 pq안에 최적이 아닌 정점이 여러개 있을 수 있으므로
 				continue;
 			// 3. 선택된거 신장트리에 포함시킴
 			visited[u.No] = true;
