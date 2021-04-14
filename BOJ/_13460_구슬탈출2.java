@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 /* 구슬탈출 2
  * 3day
- * 빨간공과 파란공을 따로 생각하지 않고 
+ * 0. 빨간공과 파란공을 따로 생각하지 않는다 
  * 1. next: 빨간공 파란공 상태를 동시에 가지고있는 구슬 class
  * 2. 방문체크: 빨간공과 파란공의 위치를 동시에 표현한 4차원 visit배열이다
  * 3. 이동 : 이동 방향에 앞서있는 공을 먼저 움직여야 한다.
@@ -61,7 +61,7 @@ public class _13460_구슬탈출2 {
 			for (int j = 0; j < M; j++) {
 				if (arr[i][j] == 'R') {
 					goosle.Red = new rc(i, j);
-					arr[i][j] = '.';
+					arr[i][j] = '.'; // 판에서 공 표시를 지우고 위치로 겹침을 체크한다
 				} else if (arr[i][j] == 'B') {
 					goosle.Blue = new rc(i, j);
 					arr[i][j] = '.';
