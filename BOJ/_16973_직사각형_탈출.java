@@ -1,8 +1,6 @@
 import java.io.*;
 import java.util.*;
 
-import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
-
 // 직사각형 탈출
 // 직사각형 면적을 다 훓거나 벽의 거리를 세거나 하려고했는데
 // 직사각형 움직일때마다 사실 검사해야하는 건 움직인 방향으로의 한줄뿐이였다
@@ -61,6 +59,18 @@ public class _16973_직사각형_탈출 {
 	static int ans = -1;
 
 	private static void bfs() {
+		//벽을 만나게 되는 꼭지점의 위치를 아예 1로 만들어버려서 탐색을 안하게 만들어버림 : 524ms
+//		for (int k = 0; k < wallList.size(); k++) {
+//			int y = wallList.get(k).y;
+//			int x = wallList.get(k).x;
+//			for (int i = 0; i < N; i++) {
+//				for (int j = 0; j < M; j++) {
+//					if (y - i < 0 || x - j < 0)
+//						continue;
+//					arr[y - i][x - j] = 1;
+//				}
+//			}
+//		}
 		Queue<xyc> q = new LinkedList<xyc>();
 		q.offer(new xyc(Sr, Sc, 0));
 		visited[Sr][Sc] = true;
