@@ -25,6 +25,7 @@ public class _5607_조합 {
 
 			long bottom = (fact[r] * fact[N - r]) % MOD;
 			long reverse_bottom = pow(bottom, MOD - 2); // 1/a --> a^(p-2) 꼴로 변환
+			System.out.println((fact[N] * reverse_bottom) % MOD);
 			sb.append("#" + tc + " " + (fact[N] * reverse_bottom) % MOD + "\n");
 		}
 		System.out.println(sb.toString());
