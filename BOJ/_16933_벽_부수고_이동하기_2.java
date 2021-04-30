@@ -68,7 +68,7 @@ public class _16933_벽_부수고_이동하기_2 {
 			if (cur.r == R - 1 && cur.c == C - 1) {
 				System.out.println(cur.cnt);
 				Min = cur.cnt;
-//				break;
+				break;
 			}
 			for (int dir = 0; dir < 4; dir++) {
 				forcnt++;
