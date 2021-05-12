@@ -1,8 +1,6 @@
 import java.io.*;
 import java.util.*;
 
-import javax.naming.directory.DirContext;
-
 // 아맞다우산
 // bfs + bitMasking
 // 챙길거를 0~4로 표시해놓고 3차원 방문 체크로 구분하면서 탐색한다
