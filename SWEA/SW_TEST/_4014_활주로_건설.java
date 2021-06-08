@@ -12,6 +12,7 @@ import java.util.StringTokenizer;
 // 다음칸이 같은, 한칸높은, 한칸낮은 경우
 // 세가지에서 건설이 가능한 경우를 체크
 // 1. 높은거 만날때 낮은거 만날때 flag 바꾸면서 length >= X인지 체크
+// SWEA에선 맞지만 BOJ에선 틀림 >> 내려갔다가 바로 올라오는 경우에 2배의 길이가 필요한 경우를 체크하지 못해서
 public class _4014_활주로_건설 {
 	static BufferedReader br;
 	static StringBuilder sb;
