@@ -6,7 +6,7 @@ import java.util.*;
 // 메뉴에 나온 것들을 코스길이 별로 잘라서 Map에 저장하고
 // 가장 많이 주문되어 코스메뉴로 하기 적합한 것을 찾는다
 
-public class _2021_KAKAO_메뉴_리뉴얼 {
+public class _2021_카카오_메뉴_리뉴얼 {
 	static HashMap<String, Integer> map = new HashMap<>();
 
 	public static void main(String[] args) throws Exception {
